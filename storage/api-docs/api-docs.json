@@ -1,0 +1,586 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Task Manager API Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Login",
+                "description": "Authenticate an existing user",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "User login data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret_password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User authenticated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User authenticated successfully"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Arfaoui Hamza"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "ogrqsdsdeen@example.net"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-09-23T05:27:58.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-09-23T05:27:58.000000Z"
+                                                },
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjA3MWFhYzJlNmQzYzY3ZjE2OWM4ZTNlMWRkYzZmNjQzMmU1MTU0OTRjMDYwMjIyNjQ3NzE5IiwiaWF0IjoxNjE5NzgxNzEyLjE3MDk4NywibmJmIjoxNjE5NzgxNzEyLjE3MDk4OCwiZXhwIjoxNjIxMzkzNzEyLjE3MDYyNiwic3ViIjoiNiIsInNjb3BlcyBdfQ.v-Z94iF72QcUj3Q-7z7VjI_XZBheWdNzlBabKwtXvXpTjRoM7KGnmT9mcfyH5MNFyErZ8LtWTI2MCGPxfcd9ThFN1c7hhsadgG-2W5Bz0aYwu4ohGSDgM5eEiFZMOUKmscKyspYhSErj6KwSW87VkgsAeqK9jSHy1lsV1ZBhtMnMbC8i3sWsGkw-KY84FnMEFuUduCvEdF_v9R-AqMGi-MrCQJeCZ-F9iHKiqqU0JX2gm5RbH6_KvWgSWryHFoWkAtDhKfSgAZzr6i0Bqk41HT4K7iA2Zu4wWzLjsdDZya3_x0E5wC00QZZUSfHjALGMF55J4nBAbVJiz-zCAdQTdpMXf8nSgXCmYop2bAQCZJv-R9c9lpl8M-iwuk6K1FiMSd1Fy39ogw-MRl6JIFoB08Qr8uv6OqMl1pVU2VWzB-IoUBhhiCNcKQXAWviStVi3T8y6hwdC7eXtQRFx2Lye2GfTcCKp6K_1F-ILaqQLzkD6laCj6ovM4M6LCx-4m7VTYb0YvC_iPeQAK-KDrbNqXjVcgoSg03eGJyFgR_vBzmTZX_UBXUKHN6Ve7ZcRVBzvXt2anG2yaaFd5de2p-5kHvVlYX7MqUwrOanN_yk0xuZbYvcblE04bE3b7rrg2y5mIbP0QOPOYiKU2oEC8wbMG9A0cVym78qZMPMQc9bdY5zHKuJR-4XvFWn3-Zo1flCVRYvZOWM4JAsjntmHlIyLUQbH9P3_yL6hWR3Z-wIzE7ZC71N6W-I9UNeaQKBuK5dGuGddRW_yvY0-2yTrTTTR3Ng0EUas2SajdQz2WhmuwNTJ9H6K4ETOn-MNcHpr6VpD-1hBw5fcio3VZGn_fv71u71qzNdmMzE4tNCI3YVZ2yCuIe_uqqHcKQYvY7aKwF-3uzKhXv_w7MumtW6B6OBmgA3ogNIs2yRzOYzQ8eJwMShiFJ9NuYc"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 16
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized. Invalid credentials."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User Registration",
+                "description": "Create a new user",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "User registration data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret_password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User created successfully"
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Arfaoui Hamza"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email",
+                                                    "example": "ogrqsdsdeen@example.net"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-09-23T05:27:58.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2023-09-23T05:27:58.000000Z"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 16
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "field_name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The field_name field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tasks": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Get all tasks",
+                "description": "Retrieve all tasks.",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/xml": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Create a new task",
+                "description": "Create a new task.",
+                "operationId": "store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Task Title"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Task Description"
+                                    },
+                                    "due_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-12-31"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "pending",
+                                            "completed"
+                                        ],
+                                        "example": "pending"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Task created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Task Title"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Task Description"
+                                        },
+                                        "due_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-12-31"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "enum": [
+                                                "pending",
+                                                "completed"
+                                            ],
+                                            "example": "pending"
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity (Validation Error)"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tasks/{id}": {
+            "get": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Retrieve a specific task by ID",
+                "description": "Retrieve a specific task by ID.",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Task retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Task Title"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Task Description"
+                                        },
+                                        "due_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-12-31"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "enum": [
+                                                "pending",
+                                                "completed"
+                                            ],
+                                            "example": "pending"
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Update a specific task by ID",
+                "description": "Update a specific task by ID.",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "Updated Task Title"
+                                    },
+                                    "due_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-12-31"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Updated Task Description"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "enum": [
+                                            "pending",
+                                            "in progress",
+                                            "completed"
+                                        ],
+                                        "example": "completed"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Task updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Updated Task Title"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Updated Task Description"
+                                        },
+                                        "due_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2023-12-31"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "enum": [
+                                                "pending",
+                                                "in progress",
+                                                "completed"
+                                            ],
+                                            "example": "completed"
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have permission to update this task."
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity (Validation Error)"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Delete a specific task by ID",
+                "description": "Delete a specific task by ID.",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the task to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Task deleted successfully"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    },
+                    "403": {
+                        "description": "Forbidden. You don't have permission to delete this task."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}
